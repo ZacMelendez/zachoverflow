@@ -1,0 +1,111 @@
+body,
+body[data-theme="light"] {
+    // transition: 0.5s ease-in-out;
+    --color-text-primary: #454545;
+    --color-text-secondary: #ee8e41;
+    --color-bg-primary: #e5e5e3;
+}
+
+body[data-theme="dark"] {
+    // transition: 0.5s ease-in-out;
+    --color-text-primary: #e5e5e3;
+    --color-text-secondary: #ee8e41;
+    --color-bg-primary: #454545;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    background-color: #454545;
+    background-color: var(--color-bg-primary);
+}
+
+div.mantine-Text-root,
+.nav-link {
+    font-family: "Poppins";
+    color: var(--color-text-primary);
+    // transition: 0.5s ease-in-out;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    &.mantine-Text-root {
+        font-family: "Poppins";
+        color: var(--color-text-primary);
+    }
+}
+
+.mantine-Paper-root {
+    background-color: var(--color-bg-primary);
+}
+
+.mantine-TextInput-input,
+.mantine-FileInput-input,
+.mantine-Textarea-input,
+.mantine-Select-input,
+.mantine-Select-dropdown {
+    font-family: "Poppins";
+    // transition: 0.5s ease-in-out;
+    color: var(--color-text-primary);
+    * {
+        color: var(--color-text-primary);
+    }
+    font-size: 18px;
+    font-weight: 500;
+    background-color: var(--color-bg-primary);
+}
+
+.mantine-TextInput-error {
+    font-weight: 300;
+    font-size: 14px;
+    color: red;
+}
+
+.mantine-Notification-root {
+    .mantine-Notification-body {
+        .mantine-Notification-title,
+        .mantine-Notification-description {
+            color: var(--color-bg-primary);
+        }
+
+        .mantine-Notification-title {
+            font-weight: 600;
+        }
+    }
+}
+
+.w-md-editor {
+    min-height: 400px;
+}
+
+.w-md-editor-text-pre > code,
+.w-md-editor-text-pre > code > .code-line,
+.w-md-editor-text-input {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+
+    @media screen and (max-width: 600px) {
+        font-size: 12px !important;
+    }
+}
+
+* {
+    text-decoration: none;
+}
+
+.mantine-Tooltip-arrow,
+.mantine-Tooltip-tooltip {
+    color: white !important;
+}
+
+.mantine-RichTextEditor-root {
+    .mantine-RichTextEditor-toolbar {
+        background-color: #e5e5e3;
+    }
+}

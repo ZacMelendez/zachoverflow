@@ -1,0 +1,6 @@
+{
+    "httpMethod": "GET",
+    "pathParameters": {
+        "url": "this-is-a-test-url"
+    }
+}

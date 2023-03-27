@@ -1,0 +1,135 @@
+@import "../../../styles/breakpoints.scss";
+
+.container {
+    .contentsTable {
+        @include lg-max {
+            display: none;
+        }
+
+        position: fixed;
+        right: 25px;
+        top: 100px;
+        max-width: 15%;
+
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border-left: 1px solid var(--color-text-secondary);
+
+        a {
+            &:hover {
+                * {
+                    color: var(--color-text-secondary);
+                }
+            }
+        }
+    }
+
+    .back {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+
+        svg {
+            color: var(--color-text-primary);
+        }
+    }
+
+    .postHead {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            font-family: "Montserrat";
+            font-weight: 600;
+            font-size: 42px;
+            text-align: center;
+            @include sm-max {
+                font-size: 26px;
+            }
+        }
+        .date {
+            font-family: "Montserrat";
+            font-weight: 300;
+        }
+    }
+
+    .markdown {
+        .codeLine {
+            background-color: var(--color-text-primary);
+            color: var(--color-bg-primary);
+            padding: 3px 5px;
+            border-radius: 5px;
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+                monospace !important;
+        }
+
+        .codeDiv {
+            position: relative;
+
+            .button {
+                position: absolute;
+                border-radius: 8px;
+                right: 5px;
+                top: 5px;
+                background-color: var(--color-bg-primary);
+                opacity: 0.75;
+
+                @include lg-max {
+                    display: none;
+                }
+            }
+            .codeBlock {
+                border-radius: 10px;
+                overflow: scroll;
+                box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        *:not(span) {
+            font-family: "Poppins";
+        }
+
+        *:not(span, a, code) {
+            color: var(--color-text-primary);
+        }
+
+        * a {
+            color: var(--color-text-secondary);
+        }
+
+        span {
+            font-size: 16px;
+            line-height: 1.5;
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+                monospace;
+        }
+
+        image {
+            max-height: 200px;
+        }
+
+        @include sm-max {
+            h1 {
+                font-size: 22px;
+            }
+            h2 {
+                font-size: 19px;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
+    }
+}

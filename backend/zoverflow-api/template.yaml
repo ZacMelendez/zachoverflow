@@ -1,0 +1,103 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  zoverflow-api
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Runtime: nodejs16.x
+    Timeout: 10
+    MemorySize: 128
+    Architectures:
+        - arm64
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS,DELETE,PUT'"
+      AllowHeaders: "'content-type'"
+      AllowOrigin: "'*'"
+
+Resources:
+  getAllPostsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/getAllPosts.handler
+      Description: Get all posts from the zachoverflow-posts DynamoDB table
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: zachoverflow-posts
+      MemorySize: 1024
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /posts
+            Method: GET
+  getPostByUrlFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/getPostByUrl.handler
+      Description: Get a single post with the provided url from the zachoverflow-posts DynamoDB table
+      MemorySize: 1024
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: zachoverflow-posts
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /posts/{url}
+            Method: GET
+  putPostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/putPost.handler
+      Description: A simple example includes a HTTP post method to add one item to a DynamoDB table.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: zachoverflow-posts
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /posts
+            Method: POST
+            Auth:
+              ApiKeyRequired: true
+  updatePostFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        Handler: src/handlers/updatePost.handler
+        Description: A simple example includes a HTTP post method to add one item to a DynamoDB table.
+        Policies:
+          - DynamoDBCrudPolicy:
+              TableName: zachoverflow-posts
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /posts
+              Method: PUT
+              Auth:
+                ApiKeyRequired: true
+  deletePostFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/deletePost.handler
+      Description: Delete a single post with the provided url from the zachoverflow-posts DynamoDB table
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: zachoverflow-posts
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /posts
+            Method: DELETE
+            Auth:
+              ApiKeyRequired: true
+  
+
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
